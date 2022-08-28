@@ -24,7 +24,7 @@ export const Home = () => {
           trendingMovies.map(Movie => (
             <li key={Movie.id}>
               <Link
-                to="/movies/:movieId"
+                to= {`/movies/${Movie.id}`}
                 state={{ from: location, id: Movie.id }}
               >
                 {Movie.title}
