@@ -8,7 +8,7 @@ export const Movies = () => {
 
   const [films, setFilms] = useState([]);
   const location = useLocation();
-  console.log(searchParams.get('query'));
+  // console.log(searchParams.get('query'));
 
   // if(searchParams.get('query')){
   //   setQuery(searchParams.get('query'))
@@ -24,11 +24,11 @@ export const Movies = () => {
     // if(searchParams.get('query')){
     //   setQuery(searchParams.get('query'))
     // }
-    const changeFilter = valueFilter => {
-      // console.log('valueFilter',  valueFilter);
-      setSearchParams(valueFilter !== '' ? { query: valueFilter } : {});
-      // console.log(searchParams.get('query'));
-    };
+    // const changeFilter = valueFilter => {
+    //   // console.log('valueFilter',  valueFilter);
+    //   setSearchParams(valueFilter !== '' ? { query: valueFilter } : {});
+    //   // console.log(searchParams.get('query'));
+    // };
     // if (location.state.query !== ''){
     //   // setQuery(location.state.query)
     //   recordsQuery(location.state.query)
@@ -42,9 +42,9 @@ export const Movies = () => {
       .then(data => {
         // console.log(data);
         setFilms(data.results);
-        changeFilter(query.trim());
+        // 
       });
-  }, [query, setSearchParams]);
+  }, [query]);
   return (
     <div>
       <form
@@ -53,6 +53,7 @@ export const Movies = () => {
           // console.log(e.target.elements.text.value);
           // changeFilter(e.target.elements.text.value.trim());
           setQuery(e.target.elements.text.value.trim());
+          setSearchParams(e.target.elements.text.value.trim() !== '' ? { query: e.target.elements.text.value.trim() } : {});
           e.target.reset();
         }}
       >
@@ -69,7 +70,7 @@ export const Movies = () => {
             <li key={film.id}>
               <Link
                 to={`/movies/${film.id}`}
-                state={{ from: location, id: film.id, query: query }}
+                state={{ from: location}}
               >
                 {film.title}
               </Link>
