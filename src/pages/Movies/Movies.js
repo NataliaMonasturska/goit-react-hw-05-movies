@@ -1,77 +1,57 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useLocation, Link } from 'react-router-dom';
-const MY_API_KEY = 'ceffe16ccd7d46ce9932d25cc21ec8d8';
+import { getSearchMovie } from '../../components/Api';
+import Notiflix from 'notiflix';
 
-export const Movies = () => {
+ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('query') ?? '');
-
   const [films, setFilms] = useState([]);
   const location = useLocation();
-  // console.log(searchParams.get('query'));
-
-  // if(searchParams.get('query')){
-  //   setQuery(searchParams.get('query'))
-  // }
-
-  //   changeFilter(query.trim());
-  //  console.log(location);
 
   useEffect(() => {
     if (query === '') {
       return;
     }
-    // if(searchParams.get('query')){
-    //   setQuery(searchParams.get('query'))
-    // }
-    // const changeFilter = valueFilter => {
-    //   // console.log('valueFilter',  valueFilter);
-    //   setSearchParams(valueFilter !== '' ? { query: valueFilter } : {});
-    //   // console.log(searchParams.get('query'));
-    // };
-    // if (location.state.query !== ''){
-    //   // setQuery(location.state.query)
-    //   recordsQuery(location.state.query)
-    // }
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=${MY_API_KEY}&query=${query}`
-    )
-      .then(response => {
-        return response.json();
-      })
+    getSearchMovie(query)
       .then(data => {
-        // console.log(data);
         setFilms(data.results);
-        // 
+
+        if (data.results.length === 0) {
+          Notiflix.Notify.failure(
+            'Sorry, there are no movies matching your search query. Please try again.'
+          );
+        }
+      })
+      .catch(error => {
+        console.error(error);
       });
   }, [query]);
+
+  const onSubmit = e => {
+    e.preventDefault();
+    setQuery(e.target.elements.text.value.trim());
+    setSearchParams(
+      e.target.elements.text.value.trim() !== ''
+        ? { query: e.target.elements.text.value.trim() }
+        : {}
+    );
+    if(e.target.elements.text.value.trim() === ''){
+      Notiflix.Notify.failure("Enter a query");
+    }
+    e.target.reset();
+  };
   return (
     <div>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          // console.log(e.target.elements.text.value);
-          // changeFilter(e.target.elements.text.value.trim());
-          setQuery(e.target.elements.text.value.trim());
-          setSearchParams(e.target.elements.text.value.trim() !== '' ? { query: e.target.elements.text.value.trim() } : {});
-          e.target.reset();
-        }}
-      >
-        <input
-          type="text"
-          // value={value}
-          name="text"
-        ></input>
+      <form onSubmit={onSubmit}>
+        <input type="text" name="text"></input>
         <button type="submit">find film</button>
       </form>
       <ul>
         {films.length > 0 &&
           films.map(film => (
             <li key={film.id}>
-              <Link
-                to={`/movies/${film.id}`}
-                state={{ from: location}}
-              >
+              <Link to={`/movies/${film.id}`} state={{ from: location }}>
                 {film.title}
               </Link>
             </li>
@@ -80,3 +60,4 @@ export const Movies = () => {
     </div>
   );
 };
+export default Movies

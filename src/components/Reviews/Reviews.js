@@ -1,26 +1,20 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { getMovieReviews } from '../../components/Api';
 
-const MY_API_KEY = 'ceffe16ccd7d46ce9932d25cc21ec8d8';
-
-export const Reviews = () => {
+const Reviews = () => {
   const [movieReviews, setmovieReviews] = useState([]);
   const { movieId } = useParams();
 
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3///movie/${movieId}/reviews?api_key=${MY_API_KEY}`
-    )
-      .then(response => {
-        return response.json();
-      })
+    getMovieReviews(movieId)
       .then(data => {
-        // setMovieCast(data.cast);
-        // setUrl(getUrl(data.cast));
         setmovieReviews(data.results);
-        console.log(data.results);
+      })
+      .catch(error => {
+        console.error(error);
       });
-  }, []);
+  }, [movieId]);
 
   return (
     <div>
@@ -41,3 +35,4 @@ export const Reviews = () => {
     </div>
   );
 };
+export default Reviews;

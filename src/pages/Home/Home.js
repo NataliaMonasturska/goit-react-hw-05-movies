@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-const MY_API_KEY = 'ceffe16ccd7d46ce9932d25cc21ec8d8';
+import { getTrendingMovie } from '../../components/Api';
 
-export const Home = () => {
+ const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const location = useLocation();
+
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=${MY_API_KEY}`
-    )
-      .then(response => {
-        return response.json();
-      })
+    getTrendingMovie()
       .then(data => {
         setTrendingMovies(data.results);
+      })
+      .catch(error => {
+        console.error(error);
       });
   }, []);
+
   return (
     <div>
       <p>Trending today</p>
@@ -23,10 +23,7 @@ export const Home = () => {
         {trendingMovies.length > 0 &&
           trendingMovies.map(Movie => (
             <li key={Movie.id}>
-              <Link
-                to= {`/movies/${Movie.id}`}
-                state={{ from: location, id: Movie.id }}
-              >
+              <Link to={`/movies/${Movie.id}`} state={{ from: location }}>
                 {Movie.title}
               </Link>
             </li>
@@ -35,3 +32,4 @@ export const Home = () => {
     </div>
   );
 };
+export default Home
