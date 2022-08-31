@@ -143,7 +143,7 @@ export const GoBack = styled.div`
   }
 `;
 export const Container = styled.div`
-  width: 1800px;
+  width: 100%;
 `;
 
 export const About = styled.div`
@@ -278,4 +278,5 @@ export const ContainerContent = styled.div`
   align-items: center;
   padding-top: 110px;
   height: 100%;
+  width:1600px;
 `;
