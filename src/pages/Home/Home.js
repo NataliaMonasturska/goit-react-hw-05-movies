@@ -9,6 +9,7 @@ const Home = () => {
   const location = useLocation();
 
   useEffect(() => {
+    
     setIsLoading(true);
     getTrendingMovie()
       .then(data => {
