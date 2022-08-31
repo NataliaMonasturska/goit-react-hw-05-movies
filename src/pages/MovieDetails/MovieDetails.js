@@ -23,8 +23,7 @@ const MovieDetails = () => {
   const percent = Math.round(movie.vote_average * 10);
   const overview = movie.overview;
   const { movieId } = useParams();
-  const img =
-    movie.poster_path !== null && movie.poster_path !== undefined
+  const img = movie.poster_path !== null && movie.poster_path !== undefined
       ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
       : '';
 
