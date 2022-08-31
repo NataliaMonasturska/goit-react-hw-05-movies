@@ -70,10 +70,10 @@ const MovieDetails = () => {
         <p>Additional information</p>
         <AdditionalList>
           <ItemCastReviews>
-            <StyledLink to="cast" state={{ linkToBack  }} onClick={scrolling} >Cast</StyledLink>
+            <StyledLink to="cast" state={{ from: linkToBack  }} onClick={scrolling}>Cast</StyledLink>
           </ItemCastReviews>
           <ItemCastReviews>
-            <StyledLink to="reviews" state={{ linkToBack  }} onClick={scrolling}>Reviews</StyledLink>
+            <StyledLink to="reviews" state={{from: linkToBack  }} onClick={scrolling} >Reviews</StyledLink>
           </ItemCastReviews>
         </AdditionalList>
       </AdditionalInformationContainer>
