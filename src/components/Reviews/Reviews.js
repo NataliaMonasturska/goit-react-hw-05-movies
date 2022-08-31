@@ -1,14 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieReviews } from '../../components/Api';
-import styled from 'styled-components';
-
-const TitleReview = styled.h3`
-font-weight: 600;
-margin-bottom:10px;
-margin-top: 29px;
-
-`
+import { TitleReview } from '../../components/styled'
 
 const Reviews = () => {
   const [movieReviews, setmovieReviews] = useState([]);

@@ -8,6 +8,7 @@ import {
 import { useEffect, useState, Suspense } from 'react';
 import { getMovieDetails } from '../../components/Api';
 import styled from 'styled-components';
+import { RotatingLines } from 'react-loader-spinner';
 const Scrolling = require('react-scroll');
 const scroll = Scrolling.animateScroll;
 const GoBack = styled.div`
@@ -29,14 +30,11 @@ const GoBack = styled.div`
   }
 `;
 const Container = styled.div`
-  padding-left: 50px;
-  padding-right: 50px;
-  width: 100vw;
+  width: 1800px;
 `;
 const ContainerImg = styled.div`
   height: 450px;
   width: 300px;
-  border: 1px solid black;
 `;
 const Img = styled.img`
   width: 100%;
@@ -60,7 +58,7 @@ const ContainerImgAndAbout = styled.div`
   margin-bottom: 50px;
   /* width:100%; */
 `;
-const Title = styled.h2`
+const TitleDetails = styled.h2`
   font-weight: 600;
   margin-bottom: 20px;
 `;
@@ -113,7 +111,15 @@ const StyledLink = styled(NavLink)`
     color: #dc143c;
   }
 `;
-
+const Loader = styled.div`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+`;
+const ContainerOutlet = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const [releaseDate, setReleaseDate] = useState('');
@@ -152,9 +158,9 @@ const MovieDetails = () => {
           <Img src={`${img}`} alt={movie.title} />
         </ContainerImg>
         <About>
-          <Title>
+          <TitleDetails>
             {movie.title} ({YearNormalize})
-          </Title>
+          </TitleDetails>
           <p>User Score: {percent}%</p>
           <Text>Overview</Text>
           <p>{overview}</p>
@@ -180,9 +186,23 @@ const MovieDetails = () => {
           </ItemCastReviews>
         </AdditionalList>
       </AdditionalInformationContainer>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
+      <ContainerOutlet>
+        <Suspense
+          fallback={
+            <Loader>
+              <RotatingLines
+                strokeColor="#3f51b5"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="150"
+                visible={true}
+              />
+            </Loader>
+          }
+        >
+          <Outlet />
+        </Suspense>
+      </ContainerOutlet>
     </Container>
   );
 };
