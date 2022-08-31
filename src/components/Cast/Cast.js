@@ -2,7 +2,14 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieCast } from '../../components/Api';
 import DefaultImg from '../../Images/DefaultImg.jpg';
-import { Ul, Li, Title, ContainerImg, ContainerTitleCast, Img } from '../../components/styled';
+import {
+  Ul,
+  Li,
+  Title,
+  ContainerImg,
+  ContainerTitleCast,
+  Img,
+} from '../../components/styled';
 
 const Cast = () => {
   const [movieCast, setMovieCast] = useState([]);
