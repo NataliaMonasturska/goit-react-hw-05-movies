@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useLocation, Link } from 'react-router-dom';
-import { getSearchMovie } from '../../components/Api';
+import { getSearchMovie } from '../components/Api';
 import Notiflix from 'notiflix';
-import {SearchFormInput, Button, Form , MovieContainer, Ul, Li, Title,ContainerImg, ContainerTitle, Img } from '../../components/styled'
+import { SearchFormInput, Button, Form, MovieContainer, Ul, Li, Title, ContainerImg, ContainerTitle, Img } from '../components/styled'
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -43,7 +43,7 @@ const Movies = () => {
     e.target.reset();
   };
 
- 
+
   return (
     <MovieContainer>
       <Form onSubmit={onSubmit}>

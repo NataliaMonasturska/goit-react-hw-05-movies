@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getMovieReviews } from '../../components/Api';
-import { TitleReview } from '../../components/styled'
+import { getMovieReviews } from '../components/Api';
+import { TitleReview } from '../components/styled'
 
 const Reviews = () => {
   const [movieReviews, setmovieReviews] = useState([]);

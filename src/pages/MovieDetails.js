@@ -5,9 +5,9 @@ import {
   useParams,
 } from 'react-router-dom';
 import { useEffect, useState, Suspense } from 'react';
-import { getMovieDetails } from '../../components/Api'
+import { getMovieDetails } from '../components/Api'
 import { RotatingLines } from 'react-loader-spinner';
-import {GoBack, Container,About, ContainerImgAndAbout, TitleDetails ,Text,  Genres, GenresList, Genre,AdditionalList,AdditionalInformationContainer,ItemCastReviews ,StyledLink,Loader,ContainerOutlet,ContainerImg, Img } from '../../components/styled'
+import { GoBack, Container, About, ContainerImgAndAbout, TitleDetails, Text, Genres, GenresList, Genre, AdditionalList, AdditionalInformationContainer, ItemCastReviews, StyledLink, Loader, ContainerOutlet, ContainerImg, Img } from '../components/styled'
 
 const Scrolling = require('react-scroll');
 const scroll = Scrolling.animateScroll;
@@ -24,8 +24,8 @@ const MovieDetails = () => {
   const overview = movie.overview;
   const { movieId } = useParams();
   const img = movie.poster_path !== null && movie.poster_path !== undefined
-      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-      : '';
+    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    : '';
 
   useEffect(() => {
     getMovieDetails(movieId).then(data => {
@@ -70,10 +70,10 @@ const MovieDetails = () => {
         <p>Additional information</p>
         <AdditionalList>
           <ItemCastReviews>
-            <StyledLink to="cast" state={{ from: linkToBack  }} onClick={scrolling}>Cast</StyledLink>
+            <StyledLink to="cast" state={{ from: linkToBack }} onClick={scrolling}>Cast</StyledLink>
           </ItemCastReviews>
           <ItemCastReviews>
-            <StyledLink to="reviews" state={{from: linkToBack  }} onClick={scrolling} >Reviews</StyledLink>
+            <StyledLink to="reviews" state={{ from: linkToBack }} onClick={scrolling} >Reviews</StyledLink>
           </ItemCastReviews>
         </AdditionalList>
       </AdditionalInformationContainer>

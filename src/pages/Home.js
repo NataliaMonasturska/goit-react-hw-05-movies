@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getTrendingMovie } from '../../components/Api';
-import {H1, Img, Ul, Li, Title,ContainerImg, ContainerTitle, ContainerHome} from '../../components/styled'
+import { getTrendingMovie } from '../components/Api';
+import { H1, Img, Ul, Li, Title, ContainerImg, ContainerTitle, ContainerHome } from '../components/styled'
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -9,7 +9,7 @@ const Home = () => {
   const location = useLocation();
 
   useEffect(() => {
-    
+
     setIsLoading(true);
     getTrendingMovie()
       .then(data => {
