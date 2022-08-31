@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useLocation, Link } from 'react-router-dom';
-import { getSearchMovie } from '../components/Api';
+import { getSearchMovie } from '../services/Api';
 import Notiflix from 'notiflix';
 import { SearchFormInput, Button, Form, MovieContainer, Ul, Li, Title, ContainerImg, ContainerTitle, Img } from '../components/styled'
 

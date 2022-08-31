@@ -5,7 +5,7 @@ import {
   useParams,
 } from 'react-router-dom';
 import { useEffect, useState, Suspense } from 'react';
-import { getMovieDetails } from '../components/Api'
+import { getMovieDetails } from '../services/Api';
 import { RotatingLines } from 'react-loader-spinner';
 import { GoBack, Container, About, ContainerImgAndAbout, TitleDetails, Text, Genres, GenresList, Genre, AdditionalList, AdditionalInformationContainer, ItemCastReviews, StyledLink, Loader, ContainerOutlet, ContainerImg, Img } from '../components/styled'
 

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getMovieCast } from './Api';
+import { getMovieCast } from '../services/Api'
 import DefaultImg from '../Images/DefaultImg.jpg';
 import {
   Ul,

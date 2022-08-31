@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getMovieReviews } from '../components/Api';
+import { getMovieReviews } from '../services/Api';
 import { TitleReview } from '../components/styled'
 
 const Reviews = () => {

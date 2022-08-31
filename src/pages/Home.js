@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getTrendingMovie } from '../components/Api';
+import { getTrendingMovie } from '../services/Api';
 import { H1, Img, Ul, Li, Title, ContainerImg, ContainerTitle, ContainerHome } from '../components/styled'
 
 const Home = () => {
