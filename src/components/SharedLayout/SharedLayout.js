@@ -10,6 +10,7 @@ import {
 } from '../styled';
 
 const SharedLayout = () => {
+  
   return (
     <ContainerHome>
       <Header>

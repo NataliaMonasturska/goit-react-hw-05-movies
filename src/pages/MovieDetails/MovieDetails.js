@@ -30,7 +30,7 @@ const GoBack = styled.div`
   }
 `;
 const Container = styled.div`
-  width: 1800px;
+  width: 1870px;
 `;
 const ContainerImg = styled.div`
   height: 450px;
