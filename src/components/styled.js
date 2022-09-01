@@ -220,9 +220,10 @@ export const Loader = styled.div`
   margin-right: auto;
 `;
 
-export const ContainerOutlet = styled.div`
+export const ContainerFlex = styled.div`
   display: flex;
   align-items: center;
+  width:100%;
 `;
 
 // STYLED CAST

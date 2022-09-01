@@ -7,7 +7,7 @@ import {
 import { useEffect, useState, Suspense } from 'react';
 import { getMovieDetails } from '../services/Api';
 import { RotatingLines } from 'react-loader-spinner';
-import { GoBack, Container, About, ContainerImgAndAbout, TitleDetails, Text, Genres, GenresList, Genre, AdditionalList, AdditionalInformationContainer, ItemCastReviews, StyledLink, Loader, ContainerOutlet, ContainerImg, Img } from '../components/styled'
+import { GoBack, Container, About, ContainerImgAndAbout, TitleDetails, Text, Genres, GenresList, Genre, AdditionalList, AdditionalInformationContainer, ItemCastReviews, StyledLink, Loader, ContainerFlex, ContainerImg, Img } from '../components/styled'
 
 const Scrolling = require('react-scroll');
 const scroll = Scrolling.animateScroll;
@@ -77,7 +77,7 @@ const MovieDetails = () => {
           </ItemCastReviews>
         </AdditionalList>
       </AdditionalInformationContainer>
-      <ContainerOutlet>
+      <ContainerFlex>
         <Suspense
           fallback={
             <Loader>
@@ -93,7 +93,7 @@ const MovieDetails = () => {
         >
           <Outlet />
         </Suspense>
-      </ContainerOutlet>
+      </ContainerFlex>
     </Container>
   );
 };
