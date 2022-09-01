@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, useLocation, Link } from 'react-router-dom';
+import { useSearchParams, useLocation, Link, } from 'react-router-dom';
 import { getSearchMovie } from '../services/Api';
 import Notiflix from 'notiflix';
-import { SearchFormInput, Button, Form, MovieContainer, Ul, Li, Title, ContainerImg, ContainerTitle, Img } from '../components/styled'
+import { SearchFormInput, Button, Form, MovieContainer, Ul, Li, Title, ContainerImg, ContainerTitle, Img, Loader, ContainerFlex } from '../components/styled';
+import { RotatingLines } from 'react-loader-spinner';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('query') ?? '');
+  const [isLoading, setIsLoading] = useState(false);
+  const [inputValue, setinputValue] = useState(searchParams.get('query') ?? '');
   const [films, setFilms] = useState([]);
   const location = useLocation();
+
 
   useEffect(() => {
     if (query === '') {
       return;
     }
+    setIsLoading(true);
     getSearchMovie(query)
       .then(data => {
         setFilms(data.results);
@@ -26,31 +31,37 @@ const Movies = () => {
       })
       .catch(error => {
         console.error(error);
+      }).finally(() => {
+        setIsLoading(false);
       });
   }, [query]);
 
   const onSubmit = e => {
     e.preventDefault();
-    setQuery(e.target.elements.text.value.trim());
+    if (inputValue.trim() === '') {
+      Notiflix.Notify.failure('Enter a query');
+      setinputValue('')
+      return
+    }
+    setQuery(inputValue.trim());
     setSearchParams(
-      e.target.elements.text.value.trim() !== ''
-        ? { query: e.target.elements.text.value.trim() }
+      inputValue.trim() !== ''
+        ? { query: inputValue.trim() }
         : {}
     );
-    if (e.target.elements.text.value.trim() === '') {
-      Notiflix.Notify.failure('Enter a query');
-    }
-    e.target.reset();
   };
+  const handleChangeInput = event => {
+    setinputValue(event.target.value)
+  }
 
 
   return (
-    <MovieContainer>
+    <ContainerFlex>
       <Form onSubmit={onSubmit}>
-        <SearchFormInput type="text" name="text"></SearchFormInput>
+        <SearchFormInput type="text" name="text" value={inputValue} onChange={handleChangeInput}></SearchFormInput>
         <Button type="submit"></Button>
       </Form>
-      <Ul>
+      {!isLoading && (<Ul>
         {films.length > 0 &&
           films.map(film => (
             <Li key={film.id}>
@@ -67,8 +78,18 @@ const Movies = () => {
               </Link>
             </Li>
           ))}
-      </Ul>
-    </MovieContainer>
+      </Ul>)}
+      {isLoading && (<Loader>
+        <RotatingLines
+          strokeColor="#3f51b5"
+          strokeWidth="5"
+          animationDuration="0.75"
+          width="150"
+          visible={true}
+        />
+      </Loader>)}
+
+    </ContainerFlex>
   );
 };
 export default Movies;

@@ -224,6 +224,7 @@ export const ContainerFlex = styled.div`
   display: flex;
   align-items: center;
   width:100%;
+  flex-direction: column;
 `;
 
 // STYLED CAST

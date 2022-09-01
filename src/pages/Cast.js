@@ -60,7 +60,7 @@ const Cast = () => {
           </Ul>
         )
       }
-        {isLoading && (<Loader>
+      {isLoading && (<Loader>
         <RotatingLines
           strokeColor="#3f51b5"
           strokeWidth="5"
