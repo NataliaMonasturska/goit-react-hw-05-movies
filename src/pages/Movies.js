@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, useLocation, Link, } from 'react-router-dom';
 import { getSearchMovie } from '../services/Api';
 import Notiflix from 'notiflix';
-import { SearchFormInput, Button, Form, MovieContainer, Ul, Li, Title, ContainerImg, ContainerTitle, Img, Loader, ContainerFlex } from '../components/styled';
+import { SearchFormInput, Button, Form, Ul, Li, Title, ContainerImg, ContainerTitle, Img, Loader, ContainerFlex } from '../components/styled';
 import { RotatingLines } from 'react-loader-spinner';
 
 const Movies = () => {

@@ -117,10 +117,6 @@ export const Form = styled.form`
   margin-bottom: 30px;
 `;
 
-export const MovieContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-`;
 
 // STYLED MOVIE DETAILS
 
